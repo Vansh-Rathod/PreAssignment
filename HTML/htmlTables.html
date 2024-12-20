@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Tables</title>
+    <style>
+      .table1 table, .table1 th, .table1 td {
+        border: 1px solid black;
+        /* border-collapse: collapse; */
+
+        /* rounded border */
+        /* border-radius: 10px; */
+
+        /* dotted border */
+        border-style: dotted;
+
+        border-color: red;
+      }
+      .table1 th, .table1 td {
+        height: 25px;
+        width: 250px;
+        background-color: #96d4d4;
+        text-align: center;
+      }
+
+      .table2 table, .table2 th, .table2 td {
+        border: 1px solid black;
+        /* border-collapse: collapse; */
+
+        /* rounded border */
+        /* border-radius: 10px; */
+
+        /* dotted border */
+        /* border-style: dotted; */
+
+        /* border-color: red; */
+      }
+    </style>
+  </head>
+  <body>
+
+    <h4>Table 1</h4>
+    <table class="table1">
+      <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td>Reliance Industries</td>
+        <td>9456457562</td>
+        <td>India</td>
+      </tr>
+      <tr>
+        <td>Infosys</td>
+        <td>4586341267</td>
+        <td>Japan</td>
+      </tr>
+      <tr>
+        <td>Tata Consultancy Services</td>
+        <td>8673462148</td>
+        <td>China</td>
+      </tr>
+      <tr>
+        <td>HDFC Bank</td>
+        <td>9457238531</td>
+        <td>Russia</td>
+      </tr>
+      <tr>
+        <td>Tesla</td>
+        <td>8563421673</td>
+        <td>United States</td>
+      </tr>
+    </table>
+
+    <table class="table2">
+        <tr>
+            <th rowspan="3">Day</th>
+            <th colspan="3">Seminar</th>
+        </tr>
+
+        <tr>
+            <th colspan="2">Schedule</th>
+            <th rowspan="2">Topic</th>
+        </tr>
+
+        <tr>
+            <th>Beign</th>
+            <th>End</th>
+        </tr>
+
+        <tr>
+           <td rowspan="2">Monday</td>
+           <td rowspan="2">8:00</td>
+           <td rowspan="2">5:00</td>
+           <td>Introduction to XML</td>
+        </tr>
+
+        <tr>
+            <td>Validity DTDand Relax</td>
+        </tr>
+
+        <tr>
+            <td rowspan="3">Tuesday</td>
+            <td>8:00</td>
+            <td>11:00</td>
+            <td rowspan="1/2">XPath</td>
+         </tr>
+        
+         <tr>
+            <td>11:00</td>
+            <td>2:00</td>
+         </tr>
+
+         <tr>
+            <td>2:00</td>
+            <td>5:00</td>
+            <td rowspan="1/2">XSL Transformations</td>
+         </tr>
+
+         <tr>
+            <td>Wednesday</td>
+            <td>8:00</td>
+            <td>12:00</td>
+            <td>XSL Formatting Object</td>
+         </tr>
+    
+    </table>
+  </body>
+</html>
