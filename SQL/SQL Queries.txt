@@ -1,0 +1,319 @@
+we,ve "Customers" table having columns "CustomerID", "CustomerName", "ContactName", "Address", "City", "PostalCode", "Country".
+
+also we've "Products" table having columns "ProductID", "ProductName", "SupplierID", "CategoryID", "Unit", "Price".
+
+also we've "OrderDetails" table having columns "OrderDetailID", "OrderID", "ProductID", "Quantity".
+
+"visit w3 schools for more tables"
+
+(1) SELECT Statement :
+SELECT * FROM Customers;
+
+---------------------------------------------------------------------------------------------
+
+(2) DISTINCT Clause :
+SELECT DISTINCT Country FROM Customers;
+
+---------------------------------------------------------------------------------------------
+
+(3) WHERE Clause :
+SELECT * FROM Customers WHERE Country = "Spain";
+
+---------------------------------------------------------------------------------------------
+
+(4) ORDER BY Clause :
+SELECT * FROM Customers WHERE Country = "Spain" ORDER BY CustomerID DESC;
+
+---------------------------------------------------------------------------------------------
+
+(5) AND Operator :
+SELECT * FROM Customers WHERE Country = "Spain" AND Country = "Mexico";
+SELECT * FROM Customers WHERE Country = "Spain" AND City = "Madrid";
+
+---------------------------------------------------------------------------------------------
+
+(6) OR Operator :
+SELECT * FROM Customers WHERE Country = "Spain" OR Country = "Mexico";
+SELECT * FROM Customers WHERE Country = "Spain" OR City = "Berlin";
+
+---------------------------------------------------------------------------------------------
+
+(7) NOT Operator :
+SELECT * FROM Customers WHERE NOT Country = "Spain";
+
+---------------------------------------------------------------------------------------------
+
+(8) INSERT INTO Statement :
+INSERT INTO Customers VALUES (2, "Tony Stark", "TonyS", "XYZ Block", "Mumbai", "564785", "India");
+INSERT INTO Customers (CustomerName, City, Country)  VALUES ("Tony Stark", "Mumbai", "India");
+INSERT INTO Customers (CustomerName, City, Country)  VALUES ("Tony Stark", "Mumbai", "India"), ("Captian America", "Ahmedabad", "India"), ("Ironman", "Pune", "India");
+
+---------------------------------------------------------------------------------------------
+
+(9) IS NULL and IS NOT NULL Clause :
+SELECT * FROM Customer WHERE Country IS NULL;
+SELECT * FROM Customer WHERE Country IS NOT NULL;
+
+---------------------------------------------------------------------------------------------
+
+(10) UPDATE Statement :
+UPDATE Customers SET Country = "India", City = "Ahmedabad";
+UPDATE Customers SET Country = "India", City = "Ahmedabad" WHERE CustomerID = 3;
+
+---------------------------------------------------------------------------------------------
+
+(11) DELETE Statement :
+DELETE FROM Customers;
+DELETE FROM Customers WHERE Country = "Spain";
+
+---------------------------------------------------------------------------------------------
+
+(12) SELECT TOP / LIMIT / FETCH FIRST / TOP PERCENT :
+SELECT TOP 3 * FROM Customers;
+SELECT * FROM Customers LIMIT 3;
+SELECT * FROM Customers FETCH FIRST 3 ROWS ONLY;
+SELECT TOP 50 PERCENT * FROM Customers;
+
+---------------------------------------------------------------------------------------------
+
+(13) MIN() Function :
+SELECT MIN(Price) AS MinimumPriceOfCategory, CategoryID FROM Products GROUP BY CategoryID;
+
+---------------------------------------------------------------------------------------------
+
+(14) MAX() Function :
+SELECT MAX(Price) AS MaximumPriceOfCategory, CategoryID FROM Products GROUP BY CategoryID;
+
+---------------------------------------------------------------------------------------------
+
+(15) COUNT() Function :
+SELECT COUNT(ProductName) AS SupplierSupplies, SupplierID FROM Products GROUP BY SupplierID; 
+
+---------------------------------------------------------------------------------------------
+
+(16) SUM() Function :
+SELECT ProductID, SUM(Quantity) AS TotalQunatitiesOfProucts FROM OrderDetails GROUP BY ProductID;
+
+---------------------------------------------------------------------------------------------
+
+(17) AVG() Function :
+SELECT CategoryID, AVG(Price) AS AveragePriceForCategory FROM Products GROUP BY CategoryID;
+
+---------------------------------------------------------------------------------------------
+
+(18) LIKE Operator :
+SELECT * FROM Customers WHERE CustomerName LIKE 'a%';
+SELECT * FROM Customers WHERE CustomerName LIKE 'L_nd__';
+SELECT * FROM Customers WHERE CustomerName LIKE '%L%';
+SELECT * FROM Customers WHERE CustomerName LIKE 'La%';
+SELECT * FROM Customers WHERE CutomerName LIKE 'a%' OR CustomerName LIKE 'b%';
+SELECT * FROM Customers WHERE CutomerName LIKE '%a';
+SELECT * FROM Customers WHERE CutomerName LIKE 'b%s';
+SELECT * FROM Customers WHERE CutomerName LIKE '%or%';
+SELECT * FROM Customers WHERE CutomerName LIKE 'a__%';
+SELECT * FROM Customers WHERE CutomerName LIKE '_r%';
+SELECT * FROM Customers WHERE Country LIKE 'Spain';
+
+---------------------------------------------------------------------------------------------
+
+(19) Wildcards :
+%  -> Represents zero or more characters
+_  -> Represents single or one character only
+[] -> Represents any single character given in brackets
+^  -> Represents any character not in brackets
+-  -> Represents any single character given in range
+{} -> Reprsents any escaped character 
+
+---------------------------------------------------------------------------------------------
+
+(20) IN Operator :
+SELECT * FROM Customers WHERE Country IN ('Spain', 'France', 'Germany', 'India');
+SELECT * FROM Customers WHERE Country NOT IN ('Spain', 'France', 'Germany', 'India');
+
+---------------------------------------------------------------------------------------------
+
+(21) BETWEEN Operator :
+SELECT * FROM Products WHERE PRICE BETWEEN 10 AND 20;
+SELECT * FROM Products WHERE PRICE NOT BETWEEN 10 AND 20;
+
+---------------------------------------------------------------------------------------------
+
+(22) Aliases :
+SELECT CustomerID AS ID, CustomerName AS Customers From Customers;
+SELECT ProductName AS [My Best Products] FROM Products;
+SELECT * FROM Customers AS Persons;
+
+---------------------------------------------------------------------------------------------
+
+(23) INNER JOIN :
+SELECT Products.ProductID, Products.ProductName, Products.Price, Categories.CategoryName, Categories.CategoryID 
+FROM Products 
+INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+
+---------------------------------------------------------------------------------------------
+
+(24) LEFT OUTER JOIN :
+SELECT Customers.CustomerID, Customers.CustomerName, Orders.OrderID 
+FROM Customers 
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+---------------------------------------------------------------------------------------------
+
+(25) RIGHT OUTER JOIN :
+SELECT Orders.OrderID, Employees.EmployeeID, Employees.FirstName 
+FROM Orders 
+RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID;
+
+---------------------------------------------------------------------------------------------
+
+(26) FULL OUTER JOIN :
+SELECT Customers.CustomerID, Customers.CustomerName, Orders.OrderID 
+FROM Customers 
+FULL OUTER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+---------------------------------------------------------------------------------------------
+
+(27) SELF JOIN :
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City 
+FROM Customers A, Customers B 
+WHERE A.CustomerID <> B.CustomerID 
+AND A.City = B.City;
+
+---------------------------------------------------------------------------------------------
+
+(28) GROUP BY Statement :
+SELECT COUNT(CustomerID) AS NoOfCustomers, Country FROM Customers GROUP BY Country;
+SELECT COUNT(Orders.OrderID) AS NoOfOrders, Orders.ShipperID FROM Orders LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID GROUP BY Orders.ShipperID;
+
+---------------------------------------------------------------------------------------------
+
+(29) HAVING Clause :
+SELECT COUNT(CustomerID) AS Customers, Country FROM Customers GROUP BY Country HAVING COUNT(CustomerID) >= 5 ;
+SELECT CustomerID, COUNT(OrderID) FROM Orders GROUP BY CustomerID HAVING COUNT(OrderID) >= 5;
+SELECT EmployeeID, COUNT(OrderID) FROM Orders GROUP BY EmployeeID HAVING COUNT(OrderID) > 10;
+
+---------------------------------------------------------------------------------------------
+
+(30) Stored Procedures :
+CREATE PROCEDURE SelectAllCustomers AS SELECT * FROM Customers GO;
+EXEC SelectAllCustomers;
+
+CREATE PROCEDURE SelectAllCustomers @City nvarchar(30) AS SELECT * FROM Customers WHERE City = @City GO;
+EXEC SelectAllCustomers @City = 'London';
+
+CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode nvarchar(10) AS SELECT * FROM Customers WHERE City = @City AND PsotalCode = @PostalCode GO;
+EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP'; 
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+-> Some more important queries
+
+(1) Create Database :
+CREATE DATABASE testDB;
+
+---------------------------------------------------------------------------------------------
+
+(2) Drop Database :
+DROP DATABASE testDB;
+
+---------------------------------------------------------------------------------------------
+
+(3) Create Table :
+CREATE TABLE Persons (PersonID int, LastName varchar(100), FirstName varchar(100), City varchar(100), Country varchar(100));
+CREATE TABLE Customers2 AS SELECT CustomerName, ContactName, Country FROM Customers;
+
+---------------------------------------------------------------------------------------------
+
+(4) Drop Table :
+DROP Table Persons;
+
+---------------------------------------------------------------------------------------------
+
+(5) Truncate Table :
+Truncate Table Persons;
+
+---------------------------------------------------------------------------------------------
+
+(6) Alter Table :
+ALTER TABLE Customers ADD DateOfBirth date;
+ALTER TABLE Customers ADD Email varchar(100);
+
+ALTER TABLE Customers DROP COLUMN Email;
+
+ALTER TABLE Customers RENAME COLUMN Email TO Contact;
+
+ALTER TABLE Customers MODIFY COLUMN DateOfBirth year;
+
+---------------------------------------------------------------------------------------------
+
+(7) Not Null Constraint :
+CREATE TABLE Persons (PersonID int NOT NULL, LastName varchar(100), FirstName varchar(100), City varchar(100), Country varchar(100));
+
+---------------------------------------------------------------------------------------------
+
+(8) Unique Key Constraint :
+CREATE TABLE Persons (PersonID int , LastName varchar(100), FirstName varchar(100), City varchar(100), Country varchar(100), UNIQUE (PersonID));
+
+CREATE TABLE Persons (PersonID int, LastName varchar(100), FirstName varchar(100), City varchar(100), Country varchar(100) CONSTRAINT UC_Person UNIQUE (PersonID, LastName));
+
+---------------------------------------------------------------------------------------------
+
+(9) Primary Key Constraint :
+CREATE TABLE Persons (PersonID int, LastName varchar(100), FirstName varchar(100), City varchar(100), Country varchar(100), PRIMARY KEY (PersonID));
+
+CREATE TABLE Persons (PersonID int, LastName varchar(100), FirstName varchar(100), City varchar(100), Country varchar(100), CONSTRAINT PK_Person PRIMARY KEY (PersonID, LastName));
+
+---------------------------------------------------------------------------------------------
+
+(10) Foreign Key Constraint :
+CREATE TABLE Orders (OrderID int, OrderNumber int, PersonID int, PRIMARY KEY (OrderID), FOREIGN KEY (PersonID) REFERENCES Persons (PersonID));
+
+CREATE TABLE Orders (OrderID int, OrderNumber int, PersonID int, PRIMARY KEY (OrderID), CONSTRAINT FK_Orders FOREIGN KEY (PersonID) REFERENCES Persons (PersonID));
+
+---------------------------------------------------------------------------------------------
+
+(11) Check Constraint :
+CREATE TABLE Persons (PersonId int, FullName varchar(100), Age int, Country varchar(100), CHECK (Age >= 18));
+
+CREATE TABLE Persons (PersonId int, FullName varchar(100), Age int, Country varchar(100), CONSTRAINT CHK_Persons CHECK (Age >= 18 AND City = 'London'));
+
+---------------------------------------------------------------------------------------------
+
+(12) Default Constraint :
+CREATE TABLE Persons (PersonId int, FullName varchar(100), Age int, Country varchar(100) DEFAULT 'London');
+
+---------------------------------------------------------------------------------------------
+
+(13) Auto Increment :
+CREATE TABLE Persons (PersonId int AUTO_INCREMENT, FullName varchar(100), Age int, Country varchar(100));
+CREATE TABLE Persons (PersonId int AUTO_INCREMENT = 5, FullName varchar(100), Age int, Country varchar(100));
+
+---------------------------------------------------------------------------------------------
+
+(14) Dates :
+Date -> YYYY-MM-DD
+Datetime -> YYYY-MM-DD HH:MI:SS
+Timestamp -> YYYY-MM-DD HH:MI:SS
+Year -> YYYY or YY
+
+---------------------------------------------------------------------------------------------
+
+(15) Datatypes :
+
+String Datatpyes:
+->char(size)
+->varchar(size)
+
+Numeric Datatypes:
+->boolean
+->int
+->float
+->double
+
+Date & Time Datatypes
+->date
+->datetime
+->timestamp
+->year
