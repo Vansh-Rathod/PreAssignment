@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jquery Events</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+      .firsth1,
+      .firsth2 {
+        border: 2px solid black;
+        padding: 5px;
+      }
+      .div1{
+        height: 100px;
+        width: 100px;
+        padding: 10px;
+        border: 10px solid red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .div1 p{
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="para1">
+      this is first paragraph. If you <b>click</b> on it, it will hide
+    </p>
+    <p class="para2">
+      this is second paragraph. If you <b>double click</b> on it, it will hide
+    </p>
+    <h1 class="firsth1">
+      this is first h1 heading, if enter here, you will be alerted
+    </h1>
+    <h2 class="firsth2">
+      this is first h2 heading, if leave it, you will be alerted
+    </h2>
+
+    <p class="para3">
+      this is third paragraph. If you <b>mousedown</b>, you will be alerted
+    </p>
+    <p class="para4">
+      this is fourth paragraph. If you <b>mouseup</b>, you will be alerted
+    </p>
+
+    <input type="text" id="input1" placeholder="Enter FirstName">
+    <input type="text" id="input2" placeholder="Enter LastName">
+
+    <div class="div1">
+        <p>This is para1</p>
+        <p>This is para2</p>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $(".para1").click(function () {
+          $(this).hide();
+        });
+        $(".para2").dblclick(function () {
+          $(this).hide();
+        });
+        $(".firsth1").mouseenter(function () {
+          alert("You Entered firsth1");
+        });
+        $(".firsth2").mouseleave(function () {
+          alert("You Entered firsth2");
+        });
+        $(".para3").mousedown(function () {
+          alert("mousedown on paragraph 3");
+        });
+        $(".para4").mouseup(function () {
+          alert("mouseup on paragraph 4");
+        });
+        $("#input1").focus(function(){
+            $(this).css("background-color", "red");
+        });
+        $("#input2").blur(function(){
+            $(this).css("background-color", "yellow");
+        });
+        $(".div1").on({
+            click: function(){
+                $(this).css("background-color", "white");
+                $(this).css("border", "10px solid red");
+            },
+            mouseenter: function(){
+                $(this).css("background-color", "red");
+                $(this).css("border", "5px solid black");
+            },
+            mouseleave: function(){
+                $(this).css("background-color", "blue");
+                $(this).css("border", "10px solid yellow");
+            },
+            dblclick: function(){
+                $(this).css("height", "200px");
+                $(this).css("width", "200px");
+                $(this).css("background-color", "royalblue");
+                $(this).css("border", "2px solid blue");
+            }
+        });
+      });
+    </script>
+  </body>
+</html>

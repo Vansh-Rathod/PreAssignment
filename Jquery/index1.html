@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery Selectors</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>This is h1 heading</h1>
+    <h2>This is h2 heading</h2>
+    <h3>This is h3 heading</h3>
+    <button type="button" id="button1">Hide h1 elements</button>
+    <button type="button" id="button2">Hide h2 elements</button>
+    <button type="button" id="button3">Hide h3 elements</button>
+    <button type="button" id="button4">Hide me</button>
+
+    <script>
+        $(document).ready(function(){
+            $("#button1").click(function(){
+                $("h1").hide();
+            });
+            $("#button2").click(function(){
+                $("h2").hide();
+            });
+            $("#button3").click(function(){
+                $("h3").hide();
+            });
+            $("#button4").click(function(){
+                $(this).hide();
+            });
+        });
+        /*
+        ALL SELECTORS -
+        (1) $("*") -> selects all elements
+
+        (2) $(this) -> selects current HTML element
+
+        (3) $("p.intro") -> Selects all <p> elements with class="intro"
+
+        (4) $("p:first") -> Selects the first <p> element
+
+        (5) $("ul li:first") -> Selects the first <li> element of the first <ul>
+
+        (6) $("ul li:first-child") -> selects first <li> element of all <ul>
+
+        (7) $("[href]") -> selects all elements having "href" attribute
+
+        (8) $("a[target='_blank']") -> selects all <a> elements having "target" attribute value equal to "_blank"
+
+        (9) $("a[target!='_blank']") -> selects all <a> elements having "target" attribute value not equal to "_blank"
+
+        (10) $(":button") -> selects all <button> elements and <input> elements of type="button"
+
+        (11) $("tr:even") -> Selects all even <tr> elements
+
+        (12) $("tr:odd") -> Selects all odd <tr> elements
+        */
+    </script>
+</body>
+</html>

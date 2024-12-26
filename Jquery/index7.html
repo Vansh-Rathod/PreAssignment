@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery Effects - Stop</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .panel1{
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .panel2{
+            height: 100px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn1">Stop Sliding</button>
+    <div class="panel1">Click me to slide panel</div>
+    <div class="panel2">Hello World!</div>
+
+    <script>
+        $(document).ready(function(){
+            $(".panel1").click(function(){
+                $(".panel2").slideDown(5000);
+            });
+            $(".btn1").click(function(){
+                $(".panel2").stop();
+            });
+        });
+    </script>
+</body>
+</html>
