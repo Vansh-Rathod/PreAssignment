@@ -7,7 +7,7 @@ document.write(5 + 4);
 document.write(" Hello!");
 
 // window.alert
-window.alert("How are you?")
+// window.alert("How are you?")
 
 // console.log
 console.log("Hello World!");
