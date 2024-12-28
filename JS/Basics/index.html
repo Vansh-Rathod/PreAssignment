@@ -13,7 +13,20 @@
     <!-- prints whole document into a pdf form -->
     <button onclick="window.print()">Print some message</button>
 
+    <h2 id="display1"></h2>
+    <h2 id="display2"></h2>
+    <h2 id="display3"></h2>
+    <h2 id="display4"></h2>
+
+    <button id="timeBtn" onclick="document.getElementById('displayTime').innerHTML=Date()">Current Time</button>
+    <p id="displayTime"></p>
+
+    <button onclick=displayDate()>Display Date</button>
+    <p id="displayDate"></p>
+
     <script src="./output.js"></script>
     <script src="./objects.js"></script>
+    <script src="./displayObjects.js"></script>
+    <script src="./events.js"></script>
   </body>
 </html>
