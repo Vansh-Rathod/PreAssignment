@@ -43,4 +43,6 @@ console.log(fruits);
 
 // slice() function
 console.log(fruits.slice(1));
+console.log(fruits.slice(3));
+console.log(fruits.slice(1, 3));
 console.log(fruits);
